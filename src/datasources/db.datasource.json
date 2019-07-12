@@ -1,0 +1,11 @@
+{
+  "name": "db",
+  "connector": "mongodb",
+  "url": "",
+  "host": "localhost",
+  "port": 27017,
+  "user": "shopUser",
+  "password": "mau5daft95..",
+  "database": "shop",
+  "useNewUrlParser": true
+}
