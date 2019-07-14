@@ -6,11 +6,12 @@ import { Entity, model, property } from '@loopback/repository';
 })
 export class Product extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     required: false,
+    mongodb: { dataType: 'ObjectID' },
   })
-  id: number;
+  _id: string;
 
   @property({
     type: 'string',
