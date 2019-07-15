@@ -17,20 +17,20 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
-import { Product } from '../models';
-import { ProductRepository } from '../repositories';
+import {Product} from '../models';
+import {ProductRepository} from '../repositories';
 
 export class ProductController {
   constructor(
     @repository(ProductRepository)
-    public productRepository: ProductRepository,
-  ) { }
+    public productRepository : ProductRepository,
+  ) {}
 
   @post('/products', {
     responses: {
       '200': {
         description: 'Product model instance',
-        content: { 'application/json': { schema: { 'x-ts-type': Product } } },
+        content: {'application/json': {schema: {'x-ts-type': Product}}},
       },
     },
   })
@@ -42,7 +42,7 @@ export class ProductController {
     responses: {
       '200': {
         description: 'Product model count',
-        content: { 'application/json': { schema: CountSchema } },
+        content: {'application/json': {schema: CountSchema}},
       },
     },
   })
@@ -58,7 +58,7 @@ export class ProductController {
         description: 'Array of Product model instances',
         content: {
           'application/json': {
-            schema: { type: 'array', items: { 'x-ts-type': Product } },
+            schema: {type: 'array', items: {'x-ts-type': Product}},
           },
         },
       },
@@ -74,7 +74,7 @@ export class ProductController {
     responses: {
       '200': {
         description: 'Product PATCH success count',
-        content: { 'application/json': { schema: CountSchema } },
+        content: {'application/json': {schema: CountSchema}},
       },
     },
   })
@@ -82,7 +82,7 @@ export class ProductController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Product, { partial: true }),
+          schema: getModelSchemaRef(Product, {partial: true}),
         },
       },
     })
@@ -96,11 +96,11 @@ export class ProductController {
     responses: {
       '200': {
         description: 'Product model instance',
-        content: { 'application/json': { schema: { 'x-ts-type': Product } } },
+        content: {'application/json': {schema: {'x-ts-type': Product}}},
       },
     },
   })
-  async findById(@param.path.number('id') id: number): Promise<Product> {
+  async findById(@param.path.string('id') id: string): Promise<Product> {
     return await this.productRepository.findById(id);
   }
 
@@ -112,11 +112,11 @@ export class ProductController {
     },
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Product, { partial: true }),
+          schema: getModelSchemaRef(Product, {partial: true}),
         },
       },
     })
@@ -133,7 +133,7 @@ export class ProductController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody() product: Product,
   ): Promise<void> {
     await this.productRepository.replaceById(id, product);
@@ -146,7 +146,7 @@ export class ProductController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.productRepository.deleteById(id);
   }
 }
