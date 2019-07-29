@@ -17,7 +17,7 @@ export class Product extends Entity {
     type: 'string',
     required: true,
   })
-  product: string;
+  name: string;
 
   @property({
     type: 'string',
